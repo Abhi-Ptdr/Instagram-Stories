@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-black text-white min-h-screen max-w-sm mx-auto">
+    <div className="bg-white text-black min-h-screen max-w-sm mx-auto">
       <h2 className="text-lg font-semibold px-4 pt-4">Stories</h2>
       <StoryList
         onSelect={(id) => {

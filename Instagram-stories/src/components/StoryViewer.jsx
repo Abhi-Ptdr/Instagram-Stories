@@ -56,7 +56,6 @@ function StoryViewer({ stories, activeIndex, onClose }) {
             onClick={handleClick}
             className="fixed top-0 left-0 w-screen h-screen bg-black z-50 flex items-center justify-center"
         >
-            {/* Progress bar */}
             <div className="absolute top-0 left-0 w-full h-1 bg-white/20">
                 <div
                     className="h-full bg-red-700 transition-all duration-100 linear"
@@ -64,7 +63,6 @@ function StoryViewer({ stories, activeIndex, onClose }) {
                 />
             </div>
 
-            {/* Close button */}
             <button
                 onClick={(e) => {
                     e.stopPropagation();
@@ -76,7 +74,6 @@ function StoryViewer({ stories, activeIndex, onClose }) {
                 <span className="text-2xl leading-none">&times;</span>
             </button>
 
-            {/* Story image */}
             <img
                 src={stories[index].image}
                 alt={`Story ${index}`}
