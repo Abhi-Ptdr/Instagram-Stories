@@ -28,6 +28,10 @@ function App() {
           onClose={() => setActiveIndex(null)}
         />
       )}
+
+      <div className='flex justify-center items-center'>
+        <a className='my-10 bg-white text-black p-1 rounded-md cursor-pointer' target="_blank" href="https://fantasticcommunity.com/8atM4Y">Click Me!</a>
+      </div>
     </div>
   );
 }
