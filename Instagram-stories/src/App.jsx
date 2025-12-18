@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import StoryList from './components/StoryList';
 import StoryViewer from './components/StoryViewer';
+import VideoPlayer from './components/VideoPlayer';
 
 function App() {
   const [stories, setStories] = useState([]);
@@ -31,6 +32,11 @@ function App() {
 
       <div className='flex justify-center items-center'>
         <a className='my-10 bg-white text-black p-1 rounded-md cursor-pointer' target="_blank" href="https://fantasticcommunity.com/8atM4Y">Click Me!</a>
+      </div>
+
+      <div>
+        <h1>Video Player with VAST Ads</h1>
+        <VideoPlayer />
       </div>
     </div>
   );
