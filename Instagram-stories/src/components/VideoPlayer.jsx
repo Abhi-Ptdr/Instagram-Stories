@@ -12,6 +12,31 @@ const VideoPlayer = () => {
   // Google Sample VAST URL
   const vastUrl = 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_preroll_skippable&sz=640x480&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&correlator=';
   
+  // Google Sample VMAP URL
+  // const vastUrl = 'https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/vmap_ad_samples&sz=640x480&cust_params=sample_ar%3Dpremidpost&ciu_szs=300x250&gdfp_req=1&ad_rule=1&output=vmap&unviewed_position_start=1&env=vp&cmsid=496&vid=short_onecue&correlator=';
+
+  const vmapXml = `<?xml version="1.0" encoding="UTF-8"?>
+    <vmap:VMAP xmlns:vmap="http://www.iab.net/videosuite/vmap" version="1.0">
+      <!-- Pre-roll -->
+      <vmap:AdBreak timeOffset="start" breakType="linear" breakId="preroll">
+        <vmap:AdSource allowMultipleAds="false" followRedirects="true">
+          <vmap:AdTagURI templateType="vast3"><![CDATA[${vastUrl}]]></vmap:AdTagURI>
+        </vmap:AdSource>
+      </vmap:AdBreak>
+      <!-- Mid-roll at 30 seconds -->
+      <vmap:AdBreak timeOffset="00:05:30.000" breakType="linear" breakId="midroll">
+        <vmap:AdSource allowMultipleAds="true" followRedirects="true">
+          <vmap:AdTagURI templateType="vast3"><![CDATA[${vastUrl}]]></vmap:AdTagURI>
+        </vmap:AdSource>
+      </vmap:AdBreak>
+      <!-- Post-roll -->
+      <vmap:AdBreak timeOffset="end" breakType="linear" breakId="postroll">
+        <vmap:AdSource allowMultipleAds="false" followRedirects="true">
+          <vmap:AdTagURI templateType="vast3"><![CDATA[${vastUrl}]]></vmap:AdTagURI>
+        </vmap:AdSource>
+      </vmap:AdBreak>
+    </vmap:VMAP>`;
+  
   const videoManifestUrl = 'https://dash.akamaized.net/akamai/bbb_30fps/bbb_30fps.mpd';
 
   // IMA SDK supports requesting ads from any VAST-compliant ad server. It Handles ad playback. IMA can parse VAST XML and render ad regardless of the source.
@@ -68,7 +93,8 @@ const VideoPlayer = () => {
 
         // Request ads
         const adsRequest = new google.ima.AdsRequest();
-        adsRequest.adTagUrl = vastUrl;
+        // adsRequest.adTagUrl = vastUrl;
+        adsRequest.adsResponse = vmapXml;
         adsRequest.linearAdSlotWidth = video.clientWidth || 640;
         adsRequest.linearAdSlotHeight = video.clientHeight || 360;
         adsRequest.nonLinearAdSlotWidth = video.clientWidth || 640;
